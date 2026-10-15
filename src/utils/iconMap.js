@@ -1,0 +1,51 @@
+// Peta nama ikon (string di portfolioData.js) -> komponen Lucide.
+// Untuk memakai ikon baru: import di sini dan tambahkan ke objek iconMap.
+import {
+  Award,
+  BookOpen,
+  Cable,
+  CircuitBoard,
+  Code2,
+  Cpu,
+  Github,
+  GraduationCap,
+  Hammer,
+  Instagram,
+  Linkedin,
+  Mail,
+  Mic,
+  Palette,
+  PenLine,
+  Sparkles,
+  Sprout,
+  Terminal,
+  Users,
+  Wrench,
+  Youtube,
+} from 'lucide-react'
+
+export const iconMap = {
+  Award,
+  BookOpen,
+  Cable,
+  CircuitBoard,
+  Code2,
+  Cpu,
+  Github,
+  GraduationCap,
+  Hammer,
+  Instagram,
+  Linkedin,
+  Mail,
+  Mic,
+  Palette,
+  PenLine,
+  Sparkles,
+  Sprout,
+  Terminal,
+  Users,
+  Wrench,
+  Youtube,
+}
+
+export const getIcon = (name) => iconMap[name] || Sparkles

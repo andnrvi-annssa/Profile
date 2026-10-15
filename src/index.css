@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Tema: nilai warna sebagai "R G B" agar mendukung opacity Tailwind ---------- */
+:root {
+  --c-bg: 255 251 251;        /* off-white */
+  --c-surface: 255 255 255;   /* white */
+  --c-tint: 255 241 242;      /* blush #FFF1F2 */
+  --c-soft: 252 231 243;      /* light pink #FCE7F3 */
+  --c-ink: 63 41 55;          /* text #3F2937 */
+  --c-muted: 107 114 128;     /* gray #6B7280 */
+  --c-line: 243 214 226;      /* garis halus */
+  --c-accent: 236 72 153;     /* primary pink #EC4899 */
+  --c-accent-ink: 157 23 77;  /* dark rose #9D174D (teks aksen, kontras baik) */
+  --c-btn: 157 23 77;
+  --c-btn-fg: 255 255 255;
+  --c-btn-hover: 225 29 72;   /* rose #E11D48 */
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: 24 17 24;           /* #181118 */
+  --c-surface: 36 25 35;      /* #241923 */
+  --c-tint: 31 22 31;
+  --c-soft: 61 38 58;
+  --c-ink: 253 242 248;       /* #FDF2F8 */
+  --c-muted: 209 213 219;     /* #D1D5DB */
+  --c-line: 76 55 74;
+  --c-accent: 244 114 182;    /* #F472B6 */
+  --c-accent-ink: 249 168 212;
+  --c-btn: 244 114 182;
+  --c-btn-fg: 24 17 24;
+  --c-btn-hover: 249 168 212;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-bg font-body text-ink antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent-ink));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: rgb(var(--c-accent) / 0.3);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-btn text-btn-fg hover:bg-btn-hover;
+  }
+  .btn-outline {
+    @apply border border-accent-ink/40 text-accent-ink hover:bg-accent/10;
+  }
+  .btn-disabled {
+    @apply cursor-not-allowed border border-line text-muted opacity-70;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-ink;
+  }
+  .filter-pill {
+    @apply rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent hover:text-accent-ink;
+  }
+  .filter-pill[aria-pressed='true'] {
+    @apply border-transparent bg-btn text-btn-fg;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted/70;
+  }
+}
+
+/* ---------- Scroll reveal (hanya aktif jika pengguna tidak meminta reduced motion) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Hero: satu momen animasi — arus mengalir di diagram ladder ---------- */
+.rung-current {
+  background-image: linear-gradient(90deg, transparent, rgb(var(--c-accent)), transparent);
+  background-size: 45% 100%;
+  background-repeat: no-repeat;
+  background-position: -60% 0;
+  animation: rung-run 1.6s ease-out calc(0.5s + var(--r, 0) * 0.5s) 1 both;
+}
+@keyframes rung-run {
+  from { background-position: -60% 0; }
+  to   { background-position: 160% 0; }
+}
+.rung-node {
+  animation: rung-energize 0.5s ease calc(0.9s + var(--i, 0) * 0.35s) 1 both;
+}
+@keyframes rung-energize {
+  from { border-color: rgb(var(--c-ink) / 0.55); background-color: transparent; }
+  to   { border-color: rgb(var(--c-accent)); background-color: rgb(var(--c-accent) / 0.14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}

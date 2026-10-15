@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andini Revi A.P. — Automation Engineering Technology Student</title>
+    <meta
+      name="description"
+      content="Portofolio Andini Revi Annissa Putri, mahasiswa D4 Teknologi Rekayasa Otomasi Universitas Diponegoro. Otomasi, PLC, elektronika, organisasi, dan kepenulisan."
+    />
+    <meta name="author" content="Andini Revi Annissa Putri" />
+    <meta name="theme-color" content="#9D174D" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Andini Revi A.P. — Automation Engineering Technology Student" />
+    <meta
+      property="og:description"
+      content="Technology × Automation × Leadership × Creativity. Proyek, pengalaman, sertifikasi, dan dokumentasi perjalanan Andini Revi A.P."
+    />
+    <!-- Setelah website di-deploy, tambahkan og:image (foto 1200x630) dan og:url sesuai domain kamu -->
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Terapkan tema tersimpan sebelum halaman tampil (mencegah kedipan) -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('andini-theme')
+          var dark = saved
+            ? saved === 'dark'
+            : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
